@@ -2,21 +2,27 @@
 
 """creates api
 """
-from flask import Flask
+from flask import Flask, jsonify, make_response, Blueprint
 from models import storage
 from api.v1.views import app_views
 from os import getenv
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
-api_host = environ['HBNB_API_HOST']
-api_port = environ['HBNB_API_PORT']
+cors = CORS(app, resources={'/*': {'origins': '0.0.0.0'}})
 
 
 @app.teardown_appcontext
 def teardown(exc):
     """removes the current sqlalchemy session"""
     storage.close()
+
+
+@app.errorhandler(404)
+def errorhandler(error):
+    """handles 404 errors"""
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 if __name__ == "__main__":
