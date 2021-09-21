@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-
-"""creates api
-"""
+"""creates api"""
 from flask import Flask, jsonify, make_response, Blueprint
 from models import storage
 from api.v1.views import app_views
