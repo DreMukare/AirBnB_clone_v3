@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""creates api"""
+"""starts the api"""
 
 from flask import Flask, jsonify, make_response, Blueprint
 from models import storage
