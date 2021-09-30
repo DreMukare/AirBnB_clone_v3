@@ -7,7 +7,7 @@ from models.state import State
 from models import storage
 
 
-@app.views.route('/states', methods=['GET'], strict_slashes=False)
+@app_views.route('/states', methods=['GET'], strict_slashes=False)
 def all_states():
     '''returns all states'''
     output = []
@@ -16,7 +16,7 @@ def all_states():
     return jsonify(output)
 
 
-@app.views.route('states/<string:state_id>',
+@app_views.route('states/<string:state_id>',
                  methods=['GET'], strict_slashes=False)
 def one_state(state_id):
     '''returns state based on id'''
@@ -26,7 +26,7 @@ def one_state(state_id):
     return jsonify(state.to_dict())
 
 
-@app.views.route('states/<string:state_id>',
+@app_views.route('states/<string:state_id>',
                  methods=['DELETE'], strict_slashes=False)
 def delete_state(state_id):
     '''deletes state obj'''
